@@ -21,7 +21,13 @@ struct dateAndTime
 	struct time sTime;
 };
 
-// function to update date and time.
+/**
+ * clockKeeper - program to update time and date appropriately
+ *
+ * @previous: struct variable to be update by seconds
+ *
+ * Return: updated time and date as (current)
+ */
 
 struct dateAndTime clockKeeper ( struct dateAndTime previous )
 {
@@ -39,87 +45,113 @@ struct dateAndTime clockKeeper ( struct dateAndTime previous )
 	return (current);
 }
 
-// Function to update time.
+/**
+ * timeUpdate - Function to update time by seconds - when the function is called, it increase time by a second
+ * @now: Time structure to be updated 
+ *
+ * Return: updated time as (now)
+ */
 struct time timeUpdate(struct time now)
 {
-        ++now.seconds;
+	++now.seconds;
 
-        if (now.seconds == 60)
-        {
-                now.seconds = 0;
-                ++now.minutes;
-
-                if (now.minutes == 60)
-                {
-                        now.minutes = 0;
-                        ++now.hour;
-
-                        if (now.hour == 24)
-                                now.hour = 0;
-                }
-        }
-
-        return (now);
+	if (now.seconds == 60)
+	{
+		now.seconds = 0;
+		++now.minutes;
+		
+		if (now.minutes == 60)
+		{
+			now.minutes = 0;
+			++now.hour;
+			
+			if (now.hour == 24)
+				now.hour = 0;
+		}
+	}
+	
+	return (now);
 }
 
 
-// function to calculate tomorrow's date
+/**
+ * dateUpdate - Function to update date to the next day
+ * @today: date structure tobe updated
+ *
+ * Return: (tomorrow) as updated date.
+ */
+
 struct date dateUpdate (struct date today)
 {
-        struct date tomorrow;
-        int numberOfDays (struct date d);
+	struct date tomorrow;
+	int numberOfDays (struct date d);
 
-        if ( today.day != numberOfDays(today) )
-        {
-                tomorrow.day = today.day + 1;
-                tomorrow.month = today.month;
-                tomorrow.year = today.year;
-        }
-        else if ( today.month == 12 )   //End of the year
-        {
-                tomorrow.day = 1;
-                tomorrow.month = 1;
-                tomorrow.year = today.year + 1;
-        }
-        else                            // End of the month
-        {
-
-                tomorrow.day = 1;
-                tomorrow.month = today.month + 1;
-                tomorrow.year = today.year;
-        }
-
-        return (tomorrow);
+	if ( today.day != numberOfDays(today) )
+	{
+		tomorrow.day = today.day + 1;
+		tomorrow.month = today.month;
+		tomorrow.year = today.year;
+	}
+	else if ( today.month == 12 )   //End of the year
+	{
+		tomorrow.day = 1;
+		tomorrow.month = 1;
+		tomorrow.year = today.year + 1;
+	}
+	else                            // End of the month
+	{
+		tomorrow.day = 1;
+		tomorrow.month = today.month + 1;
+		tomorrow.year = today.year;
+	}
+	
+	return (tomorrow);
 }
 
-//Function to calculate number of days
+/**
+ * numberOfDays - Function to calculate the number of days in a month
+ * @d: struct date variable
+ *
+ * Return: (days) as number of days in a particular month
+ */
 
 int numberOfDays(struct date d)
 {
-        bool isLeapYear(struct date d);
-        int days;
-        const int daysPerMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	bool isLeapYear(struct date d);
+	int days;
+	const int daysPerMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-        if (isLeapYear (d) == true && d.month == 2)
-                days == 29;
-        else
-                days = daysPerMonth[d.month - 1];
+	if (isLeapYear (d) == true && d.month == 2)
+		days == 29;
+	else
+		days = daysPerMonth[d.month - 1];
 
-        return (days);
+	return (days);
 }
 
-//Function to calculate leapyear
+/**
+ * isLeapYear - Function to determine if a date is a leap year
+ * @d: date struct to be determined
+ *
+ * Return: bool
+ */
+
 bool isLeapYear (struct date d)
 {
-        bool leapYearFlag;
+	bool leapYearFlag;
 
-        if (( d.year % 4 == 0 && d.year % 100 != 0 ) || d.year % 400 == 0 )
-                leapYearFlag = true;
-        else
-                leapYearFlag = false;
+	if (( d.year % 4 == 0 && d.year % 100 != 0 ) || d.year % 400 == 0 )
+		leapYearFlag = true;
+	else
+		leapYearFlag = false;
 
-        return ( leapYearFlag );
+	return (leapYearFlag);
 }
+/**
+ * main - Enter the program
+ *
+ * Return: zero
+ */
 
 int main (void)
 {
