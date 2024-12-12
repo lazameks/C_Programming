@@ -47,7 +47,6 @@ void removeString ( char string[], int startIndex, int numofChar )
         string[i] = '\0';
 }
 
-
 /*
  * insertString - Inserts a string into another at a specified position.
  * @sourceString: The original string where insertion will occur.
@@ -83,7 +82,6 @@ void insertString(char sourceString[], const char insertedString[], int position
         sourceString[sourceStringLen + insertedStringLen] = '\0';
 }
 
-
 /*
  * replaceString - Replaces the first occurrence of a substring with another.
  * @source: The source string where the replacement occurs.
@@ -118,7 +116,6 @@ void replaceString (char source[], const char s1[], const char s2[])
 
 	insertString ( source, s2, s1Index );
 }
-
 
 /*
 int main (void)
