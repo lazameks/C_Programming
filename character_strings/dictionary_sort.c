@@ -56,6 +56,12 @@ void dictionarySort (struct entry dictionary[], int size)
 
 		}
 }
+/**
+ * main - Enter the program
+ *
+ * return (0)
+ */
+/*
 int main (void)
 {
 	int i;
@@ -95,3 +101,4 @@ int main (void)
 
 	return (0);
 }
+*/
